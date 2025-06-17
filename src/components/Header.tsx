@@ -5,8 +5,25 @@ import Navigation from './Navigation';
 
 const Header = () => {
   return (
-    <div className="flex flex-row justify-between items-center w-full">
-      <h1 className="font-['Inconsolata'] text-6xl text-gray-800 hover:text-blue-500 transition-all duration-300 cursor-default hover:scale-105 pl-8">r</h1>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: '100%',
+      minHeight: '80px',
+      padding: '0 20px',
+    }}>
+      <h1 style={{
+        fontFamily: 'Inconsolata, monospace',
+        fontSize: '4rem',
+        fontWeight: '900',
+        color: '#374151',
+        margin: 0,
+        cursor: 'default',
+        transition: 'all 0.3s ease'
+      }}>
+        r
+      </h1>
       <Navigation />
     </div>
   );

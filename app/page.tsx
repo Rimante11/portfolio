@@ -6,11 +6,18 @@ import Footer from "../src/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#e8e8e8]">
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#e8e8e8'
+    }}>
       <A4Layout>
         <Header />
-        <div className="mt-24">
-          <div className="text-xl text-black">
+        <div style={{ marginTop: '3rem' }}>
+          <div style={{ fontSize: '1.25rem', color: 'black', marginTop: '3rem', paddingTop: '1rem' }}>
             <TypeWriter text="Welcome to Frontend World by Rimante" />
           </div>
           <ContactForm />

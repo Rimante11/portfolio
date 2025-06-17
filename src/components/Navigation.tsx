@@ -5,12 +5,61 @@ import Link from 'next/link';
 
 const Navigation = () => {
   return (
-    <div className="flex flex-row gap-4 pr-10">
-      <Link href="/" className="font-['Inconsolata'] text-gray-800 hover:text-blue-500 transition-colors duration-300">Home</Link>
-      <Link href="/about" className="font-['Inconsolata'] text-gray-800 hover:text-blue-500 transition-colors duration-300">About</Link>
-      <Link href="/music_app" className="font-['Inconsolata'] text-gray-800 hover:text-blue-500 transition-colors duration-300">Projects</Link>
-      <Link href="/contact" className="font-['Inconsolata'] text-gray-800 hover:text-blue-500 transition-colors duration-300">Contact</Link>
-    </div>
+    <nav style={{
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '32px',
+      alignItems: 'center'
+    }}>
+      <Link
+        href="/"
+        style={{
+          fontFamily: 'Inconsolata, monospace',
+          fontSize: '1.125rem',
+          color: '#374151',
+          textDecoration: 'none',
+          transition: 'color 0.3s ease, transform 0.3s ease'
+        }}
+      >
+        Home
+      </Link>
+      <Link
+        href="/about"
+        style={{
+          fontFamily: 'Inconsolata, monospace',
+          fontSize: '1.125rem',
+          color: '#374151',
+          textDecoration: 'none',
+          transition: 'color 0.3s ease, transform 0.3s ease'
+        }}
+      >
+        About
+      </Link>
+      <Link
+        href="/music_app"
+        style={{
+          fontFamily: 'Inconsolata, monospace',
+          fontSize: '1.125rem',
+          color: '#374151',
+          textDecoration: 'none',
+          transition: 'color 0.3s ease, transform 0.3s ease'
+        }}
+      >
+        Projects
+      </Link>
+      <Link
+        href="/contact"
+        style={{
+          fontFamily: 'Inconsolata, monospace',
+          fontSize: '1.125rem',
+          color: '#374151',
+          textDecoration: 'none',
+          transition: 'color 0.3s ease, transform 0.3s ease'
+        }}
+      >
+        Contact
+      </Link>
+    </nav>
   );
 };
 

@@ -12,10 +12,8 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Reset visibility when route changes
     setIsVisible(false);
 
-    // Small delay to allow fade out, then fade in
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 50);
@@ -26,8 +24,8 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   return (
     <div
       className={`transition-all duration-500 ease-in-out ${isVisible
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-4'
+        ? 'opacity-100 translate-y-0'
+        : 'opacity-0 translate-y-4'
         }`}
     >
       {children}

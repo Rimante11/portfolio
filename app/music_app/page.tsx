@@ -64,31 +64,88 @@ export default function MusicApp() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#e8e8e8]">
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#e8e8e8'
+    }}>
       <A4Layout>
         <Header />
-        <div className="flex flex-col gap-8 p-8 pt-26">
-          <div className="flex flex-col gap-6">
-            <h1 className="font-['Inconsolata'] text-4xl font-bold text-gray-800 text-left">Melofy</h1>
-            <p className="font-['Inconsolata'] text-lg text-gray-600 text-justify">
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '2rem',
+          padding: '2rem',
+          paddingTop: '6rem'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.5rem'
+          }}>
+            <h1 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: '3rem',
+              fontWeight: 'bold',
+              color: '#374151',
+              textAlign: 'left',
+              marginBottom: '1rem'
+            }}>
+              Melofy
+            </h1>
+            <p style={{
+              fontFamily: 'Inconsolata, monospace',
+              fontSize: '1.125rem',
+              color: '#6b7280',
+              textAlign: 'justify',
+              lineHeight: '1.7'
+            }}>
               This is an exciting project currently in development. I&apos;m building a modern music streaming application
               with innovative features and a sleek user interface. Stay tuned for updates as I bring this vision to life!
             </p>
-            {/* <p>Spin around the song image or set the round liner how mutch left. Connect via: https://developer.spotify.com/documentation/web-api (get access keys &id) </p> */}
-            <div className="text-center">
-              <span className="font-['Inconsolata'] text-4xl text-center text-lg font-semibold">Coming Soon...</span>
-              <div className="mt-4 flex justify-center items-center">
-                <div className="w-8 h-8 border-4 border-gray-300 border-t-gray-500 rounded-full animate-spin"></div>
-              </div>
-              <br />
-              <div className="flex justify-center items-center">
-                <PlayButton onClick={handlePlayClick}></PlayButton>
-              </div>
+
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '2rem',
+              marginTop: '2rem',
+              textAlign: 'center'
+            }}>
+              <span style={{
+                fontFamily: 'Inconsolata, monospace',
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: '#374151'
+              }}>
+                Coming Soon...
+              </span>
+
+              <div style={{
+                width: '32px',
+                height: '32px',
+                border: '4px solid #d1d5db',
+                borderTop: '4px solid #6b7280',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite'
+              }}></div>
+
+              <PlayButton onClick={handlePlayClick}></PlayButton>
             </div>
           </div>
         </div>
         <Footer />
       </A4Layout>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

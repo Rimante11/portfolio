@@ -14,6 +14,7 @@ const A4Container = styled.div`
   flex-direction: column;
   margin: 20px auto;
   padding: 40px 20px;
+  position: relative; /* Enable absolute positioning for footer */
 
   h1 {
     font-family: 'Syne', sans-serif;

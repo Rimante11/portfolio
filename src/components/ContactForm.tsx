@@ -6,7 +6,10 @@ import Image from 'next/image';
 
 const TooltipContainer = styled.div`
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 
 const Tooltip = styled.div<{ $hideTooltip: boolean }>`
@@ -50,6 +53,7 @@ const RedDot = styled.div<{ $isFlipped: boolean }>`
   transform: ${props => props.$isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   transform-style: preserve-3d;
   perspective: 1000px;
+  display: block;
 
   &:hover {
     transform: ${props => props.$isFlipped ? 'rotateY(180deg) scale(1.1)' : 'rotateY(0deg) scale(1.1)'};
@@ -212,11 +216,11 @@ const ContactForm = () => {
             color: '#f4f4f4',
             fontSize: '10rem',
             fontFamily: 'Syne, sans-serif',
-            fontWeight: '7800',
+            fontWeight: '800',
             margin: '10px 0',
             textShadow: `
               1px 1px 2px #ffffff,
-              -10px -10px 2pxrgb(27, 108, 207),
+              -1px -1px 2px #cbd5e1,
               inset 2px 2px 2px rgba(0, 0, 0, 0.15),
               inset -2px -2px 2px rgba(255, 255, 255, 0.8)
             `,
@@ -227,6 +231,7 @@ const ContactForm = () => {
             color: '#f4f4f4',
             fontSize: '10rem',
             fontFamily: 'Syne, sans-serif',
+            fontWeight: '800',
             margin: '10px 0',
             textShadow: `
               1px 1px 2px #ffffff,
@@ -241,6 +246,7 @@ const ContactForm = () => {
             color: '#f4f4f4',
             fontSize: '10rem',
             fontFamily: 'Syne, sans-serif',
+            fontWeight: '800',
             margin: '10px 0',
             textShadow: `
               1px 1px 2px #ffffff,
