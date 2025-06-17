@@ -54,7 +54,8 @@ const Navigation = () => {
           fontSize: '1.125rem',
           color: '#374151',
           textDecoration: 'none',
-          transition: 'color 0.3s ease, transform 0.3s ease'
+          transition: 'color 0.3s ease, transform 0.3s ease',
+          marginRight: '50px'
         }}
       >
         Contact
