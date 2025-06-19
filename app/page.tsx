@@ -7,7 +7,8 @@ import Footer from "../src/components/Footer";
 export default function Home() {
   return (
     <div style={{
-      minHeight: '100vh',
+      margin: 0,
+      padding: 0,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

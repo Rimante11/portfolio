@@ -52,8 +52,9 @@ export default function Contact() {
             fontSize: '1.125rem',
             marginBottom: '3rem',
             fontFamily: 'Inconsolata, monospace',
-            color: '#374151',
-            lineHeight: '1.6'
+            color: "rgb(107, 114, 128)",
+            lineHeight: '1.6',
+            textAlign: 'justify'
           }}>
             If you have any questions or would like to work with me, please feel free to contact me.
           </p>
@@ -61,25 +62,26 @@ export default function Contact() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '2rem'
+            //gap: '2rem'
           }}>
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.25rem'
+              //gap: '0.25rem'
             }}>
               <p style={{
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
                 fontWeight: '600',
-                color: '#374151'
+                color: '#374151',
+                marginBottom: '0px'
               }}>
                 Phone:
               </p>
               <p style={{
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
-                color: '#374151'
+                color: "rgb(107, 114, 128)"
               }}>
                 On request
               </p>
@@ -88,20 +90,21 @@ export default function Contact() {
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.25rem'
+              //gap: '0.25rem'
             }}>
               <p style={{
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
                 fontWeight: '600',
-                color: '#374151'
+                color: '#374151',
+                marginBottom: '0px'
               }}>
                 Email:
               </p>
               <p style={{
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
-                color: '#374151'
+                color: "rgb(107, 114, 128)"
               }}>
                 rimante@gmail.com
               </p>
@@ -116,7 +119,8 @@ export default function Contact() {
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
                 fontWeight: '600',
-                color: '#374151'
+                color: '#374151',
+                marginBottom: '0px'
               }}>
                 LinkedIn:
               </p>

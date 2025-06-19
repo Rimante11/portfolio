@@ -53,9 +53,10 @@ export default function About() {
               fontFamily: 'Inconsolata, monospace',
               fontSize: '1.125rem',
               textAlign: 'justify',
-              color: '#374151',
+              color: "rgb(107, 114, 128)",
               lineHeight: '1.7',
-              flex: 1
+              flex: 1,
+              marginTop: '0px'
             }}>
               Welcome to my portfolio! I am Rimante a frontend/fullstack developer passionate about creating beautiful and functional web experiences.
               <br /><br />

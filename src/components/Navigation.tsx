@@ -18,7 +18,15 @@ const Navigation = () => {
           fontSize: '1.125rem',
           color: '#374151',
           textDecoration: 'none',
-          transition: 'color 0.3s ease, transform 0.3s ease'
+          padding: '8px 12px',
+          borderRadius: '6px',
+          transition: 'color 0.3s ease, transform 0.3s ease, background-color 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = '#dbeafe';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'transparent';
         }}
       >
         Home
@@ -30,7 +38,15 @@ const Navigation = () => {
           fontSize: '1.125rem',
           color: '#374151',
           textDecoration: 'none',
-          transition: 'color 0.3s ease, transform 0.3s ease'
+          padding: '8px 12px',
+          borderRadius: '6px',
+          transition: 'color 0.3s ease, transform 0.3s ease, background-color 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = '#dbeafe';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'transparent';
         }}
       >
         About
@@ -42,7 +58,15 @@ const Navigation = () => {
           fontSize: '1.125rem',
           color: '#374151',
           textDecoration: 'none',
-          transition: 'color 0.3s ease, transform 0.3s ease'
+          padding: '8px 12px',
+          borderRadius: '6px',
+          transition: 'color 0.3s ease, transform 0.3s ease, background-color 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = '#dbeafe';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'transparent';
         }}
       >
         Projects
@@ -54,8 +78,16 @@ const Navigation = () => {
           fontSize: '1.125rem',
           color: '#374151',
           textDecoration: 'none',
-          transition: 'color 0.3s ease, transform 0.3s ease',
-          marginRight: '50px'
+          padding: '8px 12px',
+          borderRadius: '6px',
+          transition: 'color 0.3s ease, transform 0.3s ease, background-color 0.3s ease',
+          marginRight: '35px'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = '#dbeafe';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'transparent';
         }}
       >
         Contact
