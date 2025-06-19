@@ -162,7 +162,7 @@ const Navigation = () => {
         href="/contact"
         style={{
           ...linkStyle,
-          marginRight: '35px'
+          marginRight: '0px'
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

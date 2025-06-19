@@ -63,6 +63,10 @@ const RedDot = styled.div<{ $isFlipped: boolean }>`
     opacity: 1;
     visibility: visible;
   }
+
+  @media (max-width: 768px) {
+    margin: 20px auto;
+  }
 `;
 
 const Form = styled.form`
