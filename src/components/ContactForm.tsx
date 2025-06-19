@@ -71,9 +71,16 @@ const Form = styled.form`
   gap: 1rem;
   width: 100%;
   max-width: 500px;
-  margin: 2rem auto;
-  padding: 1rem;
+  margin: 1rem auto;
+  padding: 0.5rem;
   transition: opacity 0.3s ease;
+
+  @media (max-width: 768px) {
+    max-width: 95%;
+    margin: 0.5rem auto;
+    padding: 0.25rem;
+    gap: 0.75rem;
+  }
 `;
 
 const Input = styled.input`
@@ -94,6 +101,11 @@ const Input = styled.input`
     outline: none;
     border-bottom-color: #3b82f6;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -110,6 +122,12 @@ const TextArea = styled.textarea`
   &:focus {
     outline: none;
     border-color: #3b82f6;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 120px;
   }
 `;
 
@@ -131,6 +149,11 @@ const Button = styled.button`
   &:disabled {
     background-color: #9ca3af;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 1.2rem;
+    font-size: 16px; /* Prevents zoom on iOS */
   }
 `;
 
@@ -211,7 +234,11 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center" style={{
+      minHeight: '100vh',
+      padding: '1rem',
+      boxSizing: 'border-box'
+    }}>
       <TooltipContainer>
         <RedDot onClick={handleDotClick} $isFlipped={isFlipped} />
         <Tooltip $hideTooltip={showForm}>Get in touch</Tooltip>
@@ -225,10 +252,10 @@ const ContactForm = () => {
         }}>
           <p style={{
             color: '#f4f4f4',
-            fontSize: 'clamp(3rem, 18vw, 10rem)',
+            fontSize: 'clamp(2rem, 12vw, 10rem)',
             fontFamily: 'Syne, sans-serif',
             fontWeight: '800',
-            margin: '20px 0',
+            margin: '10px 0',
             lineHeight: '1.2',
             textShadow: `
               1px 1px 2px #ffffff,
@@ -241,10 +268,10 @@ const ContactForm = () => {
           </p>
           <p style={{
             color: '#f4f4f4',
-            fontSize: 'clamp(3rem, 18vw, 10rem)',
+            fontSize: 'clamp(2rem, 12vw, 10rem)',
             fontFamily: 'Syne, sans-serif',
             fontWeight: '800',
-            margin: '20px 0',
+            margin: '10px 0',
             lineHeight: '1.2',
             textShadow: `
               1px 1px 2px #ffffff,
@@ -257,10 +284,10 @@ const ContactForm = () => {
           </p>
           <p style={{
             color: '#f4f4f4',
-            fontSize: 'clamp(3rem, 18vw, 10rem)',
+            fontSize: 'clamp(2rem, 12vw, 10rem)',
             fontFamily: 'Syne, sans-serif',
             fontWeight: '800',
-            margin: '20px 0',
+            margin: '10px 0',
             lineHeight: '1.2',
             textShadow: `
               1px 1px 2px #ffffff,
