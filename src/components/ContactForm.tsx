@@ -167,6 +167,21 @@ const StatusMessage = styled.p<{ type: 'success' | 'error' }>`
   text-align: center;
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding: 0.5rem;
+  }
+`;
+
 const ContactForm = () => {
   const [mounted, setMounted] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -238,11 +253,7 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center" style={{
-      minHeight: '100vh',
-      padding: '1rem',
-      boxSizing: 'border-box'
-    }}>
+    <Container>
       <TooltipContainer>
         <RedDot onClick={handleDotClick} $isFlipped={isFlipped} />
         <Tooltip $hideTooltip={showForm}>Get in touch</Tooltip>
@@ -347,7 +358,7 @@ const ContactForm = () => {
           <StatusMessage type="success">Message sent successfully!</StatusMessage>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

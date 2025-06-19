@@ -79,7 +79,7 @@ export default function MusicApp() {
           flexDirection: 'column',
           gap: '2rem',
           padding: '2rem',
-          paddingTop: '6rem'
+          paddingTop: '3rem'
         }}>
           <div style={{
             display: 'flex',

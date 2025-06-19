@@ -36,7 +36,7 @@ export default function About() {
           flexDirection: 'column',
           gap: '2rem',
           padding: '2rem',
-          paddingTop: '6rem'
+          paddingTop: '3rem'
         }}>
           <h1 style={{
             fontSize: '3rem',

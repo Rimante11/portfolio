@@ -57,3 +57,12 @@ button {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Disable transitions on mobile for ClientLayout */
+@media (max-width: 768px) {
+  .transition-all {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
