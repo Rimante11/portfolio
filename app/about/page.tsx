@@ -42,9 +42,8 @@ export default function About() {
               src="/me_img.jpeg"
               alt="Profile Picture"
               width={200}
-              height={200}
+              height={250}
               style={{
-                borderRadius: '8px',
                 boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
                 paddingTop: '8px',
                 flexShrink: 0
