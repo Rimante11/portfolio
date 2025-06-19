@@ -38,7 +38,7 @@ const AlbumArt = styled.div.withConfig({
   justify-content: center;
   font-size: 3rem;
   animation: ${props => props.isSpinning ? 'spin 3s linear infinite' : 'none'};
-  
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -56,7 +56,7 @@ const PlayButton = styled.button`
   cursor: pointer;
   margin: 1rem;
   transition: transform 0.3s ease;
-  
+
   &:hover {
     transform: scale(1.1);
   }
@@ -98,7 +98,7 @@ export default function MelofyApp() {
       </h1>
 
       <MusicPlayer>
-        <AlbumArt $isSpinning={isPlaying}>
+        <AlbumArt isSpinning={isPlaying}>
           🎶
         </AlbumArt>
 
