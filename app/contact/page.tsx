@@ -34,7 +34,7 @@ export default function Contact() {
               opacity: '0.6'
             }}></span>
             <p style={{
-              fontSize: '1.5rem',
+              fontSize: '1.0rem',
               fontWeight: 'bold',
               fontFamily: 'Inconsolata, monospace',
               borderBottom: '2px solid #ef4444',
