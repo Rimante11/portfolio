@@ -88,7 +88,8 @@ export default function About() {
                 marginBottom: '0px',
                 marginLeft: '0px',
                 padding: '0',
-                textAlign: 'justify'
+                textAlign: 'justify',
+                hyphens: 'auto'
               })
             }}>
               Welcome to my portfolio! I am Rimante a frontend/fullstack developer passionate about creating beautiful and functional web experiences.
