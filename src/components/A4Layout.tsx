@@ -23,7 +23,6 @@ const A4Container = styled.div`
 
   @media (max-width: 794px) {
     width: 100vw;
-    min-height: 100vh;
     margin: 0;
     padding: 15px;
     box-shadow: none;
