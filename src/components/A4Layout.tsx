@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const A4Container = styled.div`
   width: 210mm;
-  min-height: 297mm;
+  min-height: 247mm;
   padding: 20mm;
   margin: 0 auto;
   background: white;
