@@ -22,10 +22,18 @@ const A4Container = styled.div`
   }
 
   @media (max-width: 794px) {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     margin: 0;
     padding: 15px;
+    box-shadow: none;
+    max-width: 100vw;
+  }
+
+  @media (max-width: 480px) {
+    width: 100vw;
+    padding: 10px;
+    margin: 0;
   }
 `;
 

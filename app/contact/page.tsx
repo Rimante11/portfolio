@@ -1,8 +1,24 @@
+'use client';
+
 import A4Layout from "../../src/components/A4Layout";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
+import { useState, useEffect } from 'react';
 
 export default function Contact() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -16,8 +32,8 @@ export default function Contact() {
         <Header />
         <div style={{
           marginTop: '6rem',
-          paddingLeft: '2rem',
-          paddingRight: '2rem'
+          paddingLeft: isMobile ? '2rem' : '2rem',
+          paddingRight: isMobile ? '2rem' : '2rem'
         }}>
           <div style={{
             position: 'relative',
@@ -60,14 +76,15 @@ export default function Contact() {
           </p>
 
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            //gap: '2rem'
+            display: isMobile ? 'flex' : 'grid',
+            flexDirection: isMobile ? 'column' : 'row',
+            gridTemplateColumns: isMobile ? 'none' : 'repeat(3, 1fr)',
+            gap: isMobile ? '0rem' : '1rem'
           }}>
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              //gap: '0.25rem'
+              gap: '0.25rem'
             }}>
               <p style={{
                 fontSize: '1.125rem',
@@ -81,7 +98,8 @@ export default function Contact() {
               <p style={{
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
-                color: "rgb(107, 114, 128)"
+                color: "rgb(107, 114, 128)",
+                marginTop: isMobile ? '0px' : 'auto'
               }}>
                 On request
               </p>
@@ -90,7 +108,7 @@ export default function Contact() {
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              //gap: '0.25rem'
+              gap: '0.25rem'
             }}>
               <p style={{
                 fontSize: '1.125rem',
@@ -104,9 +122,10 @@ export default function Contact() {
               <p style={{
                 fontSize: '1.125rem',
                 fontFamily: 'Inconsolata, monospace',
-                color: "rgb(107, 114, 128)"
+                color: "rgb(107, 114, 128)",
+                marginTop: isMobile ? '0px' : 'auto'
               }}>
-                rimante@gmail.com
+                storulike@gmail.com
               </p>
             </div>
 
@@ -126,7 +145,8 @@ export default function Contact() {
               </p>
               <p style={{
                 fontSize: '1.125rem',
-                fontFamily: 'Inconsolata, monospace'
+                fontFamily: 'Inconsolata, monospace',
+                marginTop: isMobile ? '0px' : 'auto'
               }}>
                 <a
                   href="https://www.linkedin.com/in/rimante-awdisson-96b15540/"

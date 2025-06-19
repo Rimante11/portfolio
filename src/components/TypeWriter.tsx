@@ -6,7 +6,9 @@ import styled from 'styled-components';
 const TypeWriterContainer = styled.div<{ textLength: number }>`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  text-align: center;
 
   .typing-text {
     display: inline-block;
@@ -18,6 +20,7 @@ const TypeWriterContainer = styled.div<{ textLength: number }>`
     font-weight: 500;
     letter-spacing: 0.05em;
     text-align: center;
+    margin: 0 auto;
     animation:
       typing 3.5s steps(${props => props.textLength}, end) forwards,
       blink-caret .75s step-end 4.5;
@@ -31,6 +34,15 @@ const TypeWriterContainer = styled.div<{ textLength: number }>`
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: currentColor }
+  }
+
+  @media (max-width: 768px) {
+    .typing-text {
+      font-size: 1rem;
+      text-align: center;
+      width: 100%;
+      max-width: 90vw;
+    }
   }
 `;
 

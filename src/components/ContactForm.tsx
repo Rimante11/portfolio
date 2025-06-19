@@ -78,15 +78,21 @@ const Form = styled.form`
 
 const Input = styled.input`
   padding: 0.75rem;
+  border: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 1px solid #e5e7eb;
   font-family: 'Syne', sans-serif;
   font-size: 1rem;
   background-color: white;
   color: #1f2937;
+  box-sizing: border-box;
+  outline: none;
 
   &:focus {
     outline: none;
-    border-color:#3b82f6;
+    border-bottom-color: #3b82f6;
   }
 `;
 
@@ -211,13 +217,19 @@ const ContactForm = () => {
         <Tooltip $hideTooltip={showForm}>Get in touch</Tooltip>
       </TooltipContainer>
       {!showForm && (
-        <div style={{ textAlign: 'center', fontSize: '10rem', fontWeight: 'bold', marginTop: '1rem' }}>
+        <div style={{
+          textAlign: 'center',
+          fontWeight: 'bold',
+          marginTop: '1rem',
+          fontSize: 'clamp(3rem, 15vw, 10rem)'
+        }}>
           <p style={{
             color: '#f4f4f4',
-            fontSize: '10rem',
+            fontSize: 'clamp(3rem, 18vw, 10rem)',
             fontFamily: 'Syne, sans-serif',
             fontWeight: '800',
-            margin: '10px 0',
+            margin: '20px 0',
+            lineHeight: '1.2',
             textShadow: `
               1px 1px 2px #ffffff,
               -1px -1px 2px #cbd5e1,
@@ -229,10 +241,11 @@ const ContactForm = () => {
           </p>
           <p style={{
             color: '#f4f4f4',
-            fontSize: '10rem',
+            fontSize: 'clamp(3rem, 18vw, 10rem)',
             fontFamily: 'Syne, sans-serif',
             fontWeight: '800',
-            margin: '10px 0',
+            margin: '20px 0',
+            lineHeight: '1.2',
             textShadow: `
               1px 1px 2px #ffffff,
               -1px -1px 2px #cbd5e1,
@@ -244,10 +257,11 @@ const ContactForm = () => {
           </p>
           <p style={{
             color: '#f4f4f4',
-            fontSize: '10rem',
+            fontSize: 'clamp(3rem, 18vw, 10rem)',
             fontFamily: 'Syne, sans-serif',
             fontWeight: '800',
-            margin: '10px 0',
+            margin: '20px 0',
+            lineHeight: '1.2',
             textShadow: `
               1px 1px 2px #ffffff,
               -1px -1px 2px #cbd5e1,
