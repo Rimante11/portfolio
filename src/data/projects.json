@@ -1,0 +1,47 @@
+[
+  {
+    "id": "coffee-shop",
+    "name": "Coffee Shop",
+    "category": "UX/UI Design",
+    "description": "A modern coffee shop application designed with user experience in mind. Features intuitive navigation, beautiful visual design, and seamless ordering process. The app focuses on creating a warm, inviting atmosphere that reflects the cozy nature of coffee shops.",
+    "image": "/coffe_in.png",
+    "modalContent": "/coffe_in.png",
+    "modalType": "image"
+  },
+  {
+    "id": "salushi",
+    "name": "Salushi",
+    "category": "Web Development",
+    "description": "One page application for sushi express. Features modern design, responsive layout, and seamless user experience for ordering delicious sushi.",
+    "image": "/salushi.png",
+    "modalContent": "/one_page_sushi.pdf",
+    "modalType": "pdf"
+  },
+  {
+    "id": "charge-home",
+    "name": "Charge home",
+    "category": "Web Development",
+    "description": "Webshop for electric cars charger shop and integration of electric chargers. Features comprehensive product catalog, secure payment processing, and detailed charger specifications for electric vehicle owners.",
+    "image": "/charge_home.png",
+    "modalContent": "/Chargehome_prototype.pdf",
+    "modalType": "pdf"
+  },
+  {
+    "id": "melofy",
+    "name": "Melofy",
+    "category": "Web Application",
+    "description": "This is an exciting project currently in development. I'm building a modern music streaming application with innovative features and a sleek user interface. Stay tuned for updates as I bring this vision to life!",
+    "image": null,
+    "modalContent": null,
+    "modalType": "play-button"
+  },
+  {
+    "id": "personal-card",
+    "name": "Personal card",
+    "category": "UX/UI Design",
+    "description": "A personal card for developers. A modern digital business card application designed specifically for developers and tech professionals. Features clean, minimalist design with easy sharing capabilities, contact information display, and professional portfolio showcase. Perfect for networking and making lasting impressions in the tech community.",
+    "image": "/personal_card.png",
+    "modalContent": "/personal_card.png",
+    "modalType": "image"
+  }
+]

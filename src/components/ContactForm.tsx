@@ -53,7 +53,9 @@ const RedDot = styled.div<{ $isFlipped: boolean }>`
   transform: ${props => props.$isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   transform-style: preserve-3d;
   perspective: 1000px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     transform: ${props => props.$isFlipped ? 'rotateY(180deg) scale(1.1)' : 'rotateY(0deg) scale(1.1)'};
@@ -65,7 +67,7 @@ const RedDot = styled.div<{ $isFlipped: boolean }>`
   }
 
   @media (max-width: 768px) {
-    margin: 20px auto;
+    margin: 10px auto;
   }
 `;
 
@@ -172,7 +174,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   padding: 1rem;
   box-sizing: border-box;
 
@@ -255,7 +256,20 @@ const ContactForm = () => {
   return (
     <Container>
       <TooltipContainer>
-        <RedDot onClick={handleDotClick} $isFlipped={isFlipped} />
+        <RedDot onClick={handleDotClick} $isFlipped={isFlipped}>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill={isFlipped ? "#cce5ff" : "#ffcccc"}
+            style={{
+              transition: 'transform 0.5s ease',
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+            }}
+          >
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+        </RedDot>
         <Tooltip $hideTooltip={showForm}>Get in touch</Tooltip>
       </TooltipContainer>
       {!showForm && (
