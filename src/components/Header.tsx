@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -16,6 +18,11 @@ const Header = () => {
 
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
+
+  const handleBackToHomePage = () => {
+    router.push('/');
+  }
+
 
   return (
     <div style={{
@@ -37,7 +44,9 @@ const Header = () => {
         cursor: 'default',
         transition: 'all 0.3s ease',
         paddingLeft: isMobile ? '20px' : '10px'
-      }}>
+      }}
+        onClick={handleBackToHomePage}
+      >
         r
       </h1>
       <Navigation />

@@ -283,22 +283,43 @@ export default function MusicApp() {
 
       {/* Modal for full-screen image */}
       {modalImage && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 1000,
-          cursor: 'pointer',
-          padding: '10px'
-        }} onClick={closeModal}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+            cursor: 'pointer',
+            touchAction: 'none'
+          }}
+          onClick={(e) => {
+            // Only close if clicking directly on the background
+            if (e.target === e.currentTarget) {
+              closeModal();
+            }
+          }}
+        >
           {modalImage.endsWith('.pdf') ? (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '10px',
+                width: '100%',
+                height: '100%',
+                maxWidth: '90vw',
+                maxHeight: '90vh',
+                cursor: 'default'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
               <iframe
                 src={`${modalImage}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                 style={{
@@ -307,10 +328,8 @@ export default function MusicApp() {
                   border: 'none',
                   borderRadius: '8px',
                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
-                  //maxWidth: '90vw',
                   maxHeight: '80vh'
                 }}
-                onClick={(e) => e.stopPropagation()}
                 allowFullScreen
                 title="PDF Viewer"
               />
@@ -321,11 +340,14 @@ export default function MusicApp() {
                 style={{
                   color: 'white',
                   textDecoration: 'none',
-                  padding: '8px 16px',
+                  padding: '12px 20px',
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  borderRadius: '4px',
+                  borderRadius: '8px',
                   fontSize: '14px',
-                  fontFamily: 'Inconsolata, monospace'
+                  fontFamily: 'Inconsolata, monospace',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  cursor: 'pointer'
                 }}
                 onClick={(e) => e.stopPropagation()}
               >
@@ -333,20 +355,34 @@ export default function MusicApp() {
               </a>
             </div>
           ) : (
-            <Image
-              src={modalImage}
-              alt="Full screen"
-              width={1200}
-              height={800}
+            <div
               style={{
-                maxWidth: '100%',
-                maxHeight: '100%',
-                objectFit: 'contain',
-                borderRadius: '8px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)'
+                position: 'relative',
+                maxWidth: '90vw',
+                maxHeight: '90vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'default'
               }}
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <Image
+                src={modalImage}
+                alt="Full screen"
+                width={1200}
+                height={800}
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
+                  borderRadius: '8px',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
+                  userSelect: 'none',
+                  pointerEvents: 'none'
+                }}
+              />
+            </div>
           )}
         </div>
       )}
