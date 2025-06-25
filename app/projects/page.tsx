@@ -84,6 +84,13 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
   opacity: ${props => props.$isOpen ? '1' : '0'};
   transform-origin: top;
   transform: ${props => props.$isOpen ? 'scaleY(1)' : 'scaleY(0)'};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+
+  @media (max-width: 768px) {
+    max-height: ${props => props.$isOpen ? '400px' : '0'};
+    padding: ${props => props.$isOpen ? '0.75rem' : '0'};
+    margin-top: 4px;
+  }
 `;
 
 export default function MusicApp() {
@@ -95,10 +102,25 @@ export default function MusicApp() {
   };
 
   const toggleDropdown = (projectId: string) => {
-    setDropdownStates(prev => ({
-      ...prev,
-      [projectId]: !prev[projectId]
-    }));
+    setDropdownStates(prev => {
+      const isCurrentlyOpen = prev[projectId] || false;
+
+      // If clicking the same dropdown, just toggle it
+      if (isCurrentlyOpen) {
+        return {
+          ...prev,
+          [projectId]: false
+        };
+      }
+
+      // If clicking a different dropdown, close all others and open this one
+      const newState: { [key: string]: boolean } = {};
+      projectsData.forEach(project => {
+        newState[project.id] = project.id === projectId;
+      });
+
+      return newState;
+    });
   };
 
   const openModal = (imageSrc: string) => {
