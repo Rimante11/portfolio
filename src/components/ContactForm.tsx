@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
 
 const TooltipContainer = styled.div`
   position: relative;
@@ -202,6 +201,8 @@ const ContactForm = () => {
     if (status === 'success') {
       const timer = setTimeout(() => {
         setStatus('idle');
+        setShowForm(false);
+        setIsFlipped(false);
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -272,7 +273,7 @@ const ContactForm = () => {
         </RedDot>
         <Tooltip $hideTooltip={showForm}>Get in touch</Tooltip>
       </TooltipContainer>
-      {!showForm && (
+      {!showForm && status !== 'success' && (
         <div style={{
           textAlign: 'center',
           fontWeight: 'bold',
@@ -360,17 +361,25 @@ const ContactForm = () => {
           {status === 'error' && <StatusMessage type="error">Failed to send message. Please try again.</StatusMessage>}
         </Form>
       )}
-      {status === 'success' && !showForm && (
-        <>
-          <Image
-            src="/success_msg.png"
-            alt="Success"
-            width={50}
-            height={50}
-            style={{ marginTop: '20px' }}
-          />
-          <StatusMessage type="success">Message sent successfully!</StatusMessage>
-        </>
+      {status === 'success' && (
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '1rem',
+          marginTop: '2rem',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            fontSize: '14px',
+            fontFamily: 'Syne, sans-serif',
+            fontWeight: '400',
+            color: '#10b981',
+          }}>
+            Email sent successfully!
+          </div>
+        </div>
       )}
     </Container>
   );

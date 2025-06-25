@@ -6,7 +6,6 @@ export async function POST(request: Request) {
   try {
     const { email, subject, message } = await request.json();
 
-    // Validate environment variables
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       throw new Error('Missing email configuration. Please check your environment variables.');
     }
@@ -21,7 +20,7 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send to yourself
+      to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `Portfolio Contact: ${subject}`,
       html: createEmailTemplate(email, subject, message),
