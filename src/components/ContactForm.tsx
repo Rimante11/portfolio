@@ -319,6 +319,7 @@ const ContactForm = () => {
             fontWeight: '800',
             margin: '10px 0',
             lineHeight: '1.2',
+            paddingBottom: '50px',
             textShadow: `
               1px 1px 2px #ffffff,
               -1px -1px 2px #cbd5e1,

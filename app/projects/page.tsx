@@ -105,7 +105,6 @@ export default function MusicApp() {
     setDropdownStates(prev => {
       const isCurrentlyOpen = prev[projectId] || false;
 
-      // If clicking the same dropdown, just toggle it
       if (isCurrentlyOpen) {
         return {
           ...prev,
@@ -113,7 +112,6 @@ export default function MusicApp() {
         };
       }
 
-      // If clicking a different dropdown, close all others and open this one
       const newState: { [key: string]: boolean } = {};
       projectsData.forEach(project => {
         newState[project.id] = project.id === projectId;
@@ -299,7 +297,6 @@ export default function MusicApp() {
             touchAction: 'none'
           }}
           onClick={(e) => {
-            // Only close if clicking directly on the background
             if (e.target === e.currentTarget) {
               closeModal();
             }
@@ -386,7 +383,6 @@ export default function MusicApp() {
           )}
         </div>
       )}
-
       <style jsx>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }

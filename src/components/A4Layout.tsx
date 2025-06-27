@@ -27,12 +27,15 @@ const A4Container = styled.div`
     padding: 15px;
     box-shadow: none;
     max-width: 100vw;
+    background: white;
+
   }
 
   @media (max-width: 480px) {
     width: 100vw;
     padding: 10px;
     margin: 0;
+    background: white;
   }
 `;
 
