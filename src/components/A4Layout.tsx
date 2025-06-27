@@ -8,7 +8,7 @@ const A4Container = styled.div`
   min-height: 247mm;
   padding: 20mm;
   margin: 0 auto;
-  background: white;
+  background: white !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ const A4Container = styled.div`
     padding: 15px;
     box-shadow: none;
     max-width: 100vw;
-    background: white;
+    background: white !important;
 
   }
 
@@ -35,7 +35,7 @@ const A4Container = styled.div`
     width: 100vw;
     padding: 10px;
     margin: 0;
-    background: white;
+    background: white !important;
   }
 `;
 

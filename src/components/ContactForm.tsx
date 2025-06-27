@@ -97,7 +97,7 @@ const Input = styled.input`
   border-bottom: 1px solid #e5e7eb;
   font-family: 'Syne', sans-serif;
   font-size: 1rem;
-  background-color: white;
+  background-color: white !important;
   color: #1f2937;
   box-sizing: border-box;
   outline: none;
@@ -121,7 +121,7 @@ const TextArea = styled.textarea`
   font-size: 1rem;
   min-height: 150px;
   resize: vertical;
-  background-color: white;
+  background-color: white !important;
   color: #1f2937;
 
   &:focus {

@@ -15,10 +15,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Override dark mode preferences to ensure consistent light theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff !important;
+    --foreground: #ededed !important;
   }
 }
 
@@ -26,12 +27,40 @@ html {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
+  background-color: #e8e8e8 !important;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #e8e8e8 !important;
+}
+
+/* Ensure all pages maintain light background */
+#__next {
+  background-color: #e8e8e8 !important;
+}
+
+/* Force light theme on all elements */
+* {
+  color-scheme: light !important;
+}
+
+/* Ensure form elements maintain white backgrounds */
+input,
+textarea,
+select {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+/* Ensure all divs with white backgrounds stay white */
+div[style*="background: white"],
+div[style*="background-color: white"],
+div[style*="background: #ffffff"],
+div[style*="background-color: #ffffff"] {
+  background-color: #ffffff !important;
 }
 
 .page-transition,
@@ -64,5 +93,20 @@ button {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  /* Ensure mobile backgrounds are correct */
+  html,
+  body,
+  #__next {
+    background-color: #e8e8e8 !important;
+  }
+
+  /* Force white backgrounds on mobile for all form elements */
+  input,
+  textarea,
+  select {
+    background-color: #ffffff !important;
+    color: #1f2937 !important;
   }
 }
