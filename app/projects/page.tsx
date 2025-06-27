@@ -62,15 +62,40 @@ const PlayButton = styled.div`
 `;
 
 const DropdownArrow = styled.div<{ $isOpen: boolean }>`
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: ${props => props.$isOpen ? '0' : '8px solid #6b7280'};
-  border-bottom: ${props => props.$isOpen ? '8px solid #6b7280' : '0'};
-  transition: transform 0.3s ease;
+  width: 12px;
+  height: 12px;
+  position: relative;
   cursor: pointer;
   margin-left: 8px;
+  transition: transform 0.3s ease;
+  color: '#374151';
+  transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: #374151;
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    width: 2px;
+    height: 8px;
+    top: 2px;
+    left: 5px;
+    transform: rotate(45deg);
+    transform-origin: center bottom;
+  }
+
+  &::after {
+    width: 2px;
+    height: 8px;
+    top: 2px;
+    left: 5px;
+    transform: rotate(-45deg);
+    transform-origin: center bottom;
+  }
 `;
 
 const DropdownContent = styled.div<{ $isOpen: boolean }>`
@@ -392,3 +417,25 @@ export default function MusicApp() {
     </div >
   );
 }
+
+// TODO:
+// - Add Authentication/login for music app
+// - Connnect Spotify Dev
+// - Add testing for more complex features (user authentication, data management, etc.)
+
+// INTEGRATING TWO PROJECTS (two separare repositories)
+// - Deploy your music app as a separate project on Vercel (from its own Git repo).
+// - Get the live URL (e.g., https://music-app.vercel.app).
+// - In your portfolio site, simply link to it or embed it via an iframe.
+
+// - Add cv view available with one time acces key generated sent to user and set session timeout 10min.
+// (check gitLab pipelines)
+
+// - Learn both, but in this order:
+
+//     Basic AWS (EC2, S3, IAM, VPC, CloudFormation)
+
+//     CI/CD concepts (pipelines, build/test/deploy)
+
+//     CI/CD tools on AWS (CodePipeline, CodeBuild, or integrate Jenkins/GitHub Actions with AWS)
+
