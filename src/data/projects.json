@@ -39,7 +39,7 @@
     "id": "charge-home",
     "name": "Charge home",
     "category": "Web Development",
-    "description": "Webshop for electric cars charger shop and integration of electric chargers. Features comprehensive product catalog, secure payment processing, and detailed charger specifications for electric vehicle owners.",
+    "description": "Webshop for electric cars charger shop and integration of electric chargers. Features comprehensive product catalog, secure payment processing, and detailed charger specifications for electric vehicle owners. The application used Shopify CMS, which allowed easy content management, product catalog updates, and e-commerce functionality.",
     "image": "/charge_home.png",
     "modalContent": "/Chargehome_prototype.pdf",
     "modalType": "pdf"

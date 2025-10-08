@@ -94,7 +94,11 @@ export default function About() {
             }}>
               Welcome to my portfolio! I am Rimante a frontend/fullstack developer passionate about creating beautiful and functional web experiences.
               <br /><br />
-              I like clean, aesthetic interfaces that are not only visually distinct but also intuitive and safe for users to navigate. I focus on creating well-structured layouts that balance creativity with usability, guided by solid UX/UI principles. Skill development is a key part of my journey — I am always learning, improving, and pushing myself to build better, smarter web solutions.
+              I like clean, aesthetic interfaces that are not only visually distinct but also intuitive and safe for users to navigate. I focus on creating well-structured layouts that balance creativity with usability, guided by solid UX/UI principles.
+              <br /><br />
+              I work with multiple programming languages and frameworks, including JavaScript, TypeScript, React, Ruby on Rails, Angular, and C#. I have experience with databases such as MySQL, PostgreSQL, and MongoDB. I am proficient with Git and GitHub Actions and have foundational knowledge of cloud platforms, including AWS and Azure.
+              <br /><br />
+              You don’t need to tick every box — the more I code, the more I realize that the boxes I haven’t ticked aren’t shortcomings, but opportunities to grow, learn, and expand my skills. Curiosity, problem-solving, and a willingness to explore are what truly matter.
             </p>
           </div>
         </div>
