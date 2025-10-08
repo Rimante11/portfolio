@@ -212,7 +212,7 @@ export default function MusicApp() {
               textAlign: 'left',
               marginBottom: '1rem'
             }}>
-              Work
+              Projects
             </h1>
             <ul style={{
               listStyle: 'none',

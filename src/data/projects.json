@@ -3,9 +3,18 @@
     "id": "dynamic-form",
     "name": "Dynamic Form",
     "category": "Web Development",
-    "description": "An Angular application featuring a dynamic form with conditional fields, validation, and multi-step workflow. Built with Angular Material for modern UI components, responsive design and some custom styling. Try it out: https://dynamic-form-angular-8oaqv2vg3-rimantes-projects-bd5d8f68.vercel.app/",
+    "description": "An Angular application featuring a dynamic form with conditional fields, validation, and multi-step workflow. Built with Angular Material for modern UI components, responsive design and some custom styling. Check it out: https://dynamic-form-angular-8oaqv2vg3-rimantes-projects-bd5d8f68.vercel.app/",
     "image": "/angularForm.jpg",
     "modalContent": "/angularForm.jpg",
+    "modalType": "image"
+  },
+  {
+    "id": "dashboard",
+    "name": "Dashboard For Phone Calls",
+    "category": "Web Development",
+    "description": "Created a simple dashboard that visualizes data from a JSON object. The goal was to display the total calls per employee per day using several graphs and tables. Take a look at the code: https://github.com/Rimante11/dashboard_for_phone_calls",
+    "image": "/dashboard.png",
+    "modalContent": "/dashboard.png",
     "modalType": "image"
   },
   {
@@ -34,15 +43,6 @@
     "image": "/charge_home.png",
     "modalContent": "/Chargehome_prototype.pdf",
     "modalType": "pdf"
-  },
-  {
-    "id": "melofy",
-    "name": "Melofy",
-    "category": "Web Application",
-    "description": "This is an exciting project currently in development. I'm building a modern music streaming application with innovative features and a sleek user interface. Stay tuned for updates as I bring this vision to life!",
-    "image": null,
-    "modalContent": null,
-    "modalType": "play-button"
   },
   {
     "id": "personal-card",
