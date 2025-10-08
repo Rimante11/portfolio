@@ -154,6 +154,33 @@ export default function MusicApp() {
     setModalImage(null);
   };
 
+  const renderDescriptionWithLinks = (description: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = description.split(urlRegex);
+    
+    return parts.map((part, index) => {
+      if (urlRegex.test(part)) {
+        return (
+          <a 
+            key={index} 
+            href={part} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{
+              color: '#3b82f6',
+              textDecoration: 'underline',
+              cursor: 'pointer'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -292,7 +319,7 @@ export default function MusicApp() {
                         flex: 1
                       }}>
                         <b>{project.name}</b><br></br>
-                        {project.description}
+                        {renderDescriptionWithLinks(project.description)}
                       </p>
                     </div>
                   </DropdownContent>

@@ -1,5 +1,14 @@
 [
   {
+    "id": "dynamic-form",
+    "name": "Dynamic Form",
+    "category": "Web Development",
+    "description": "An Angular application featuring a dynamic form with conditional fields, validation, and multi-step workflow. Built with Angular Material for modern UI components, responsive design and some custom styling. Try it out: https://dynamic-form-angular-8oaqv2vg3-rimantes-projects-bd5d8f68.vercel.app/",
+    "image": "/angularForm.jpg",
+    "modalContent": "/angularForm.jpg",
+    "modalType": "image"
+  },
+  {
     "id": "coffee-shop",
     "name": "Coffee Shop",
     "category": "UX/UI Design",
