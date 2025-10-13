@@ -1,9 +1,9 @@
 [
   {
     "id": "e-shop",
-    "name": "Artlist E-shop",
+    "name": "Artlister E-shop",
     "category": "Web Development",
-    "description": "E-shop web application that is currently under development. Check it out: https://ecomerce-with-ai-search.vercel.app/",
+    "description": "A full-stack e-commerce web application currently under development. The frontend is built with React, React Router, Redux, Bootstrap, and Material UI, providing a responsive and dynamic user interface. The backend is powered by Node.js and Express, with MongoDB as the database and Cookie Parser for session management. GitHub Actions are integrated for continuous integration and deployment. Live demo: https://ecomerce-with-ai-search.vercel.app/",
     "image": "/artlist.jpg",
     "modalContent": "/artlist.jpg",
     "modalType": "image"
