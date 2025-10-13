@@ -66,11 +66,21 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
 `;
 
 export default function MusicApp() {
-  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>({});
+  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>(() => {
+    // Initialize all states to false immediately
+    const initialStates: { [key: string]: boolean } = {};
+    projectsData.forEach(project => {
+      initialStates[project.id] = false;
+    });
+    return initialStates;
+  });
   const [modalImage, setModalImage] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
-  // Initialize all dropdown states to false on component mount
+  // Ensure we're on the client side to prevent hydration mismatches
   useEffect(() => {
+    setIsClient(true);
+    // Reset all dropdown states to false when component mounts on client
     const initialStates: { [key: string]: boolean } = {};
     projectsData.forEach(project => {
       initialStates[project.id] = false;
@@ -188,10 +198,10 @@ export default function MusicApp() {
                     <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#374151' }}>{project.name}</p>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <p style={{ margin: 0, fontSize: '0.9rem', color: '#6b7280' }}>{project.category}</p>
-                      <DropdownArrow $isOpen={dropdownStates[project.id] || false} />
+                      <DropdownArrow $isOpen={isClient && (dropdownStates[project.id] || false)} />
                     </div>
                   </div>
-                  <DropdownContent $isOpen={dropdownStates[project.id] || false}>
+                  <DropdownContent $isOpen={isClient && (dropdownStates[project.id] || false)}>
                     <div style={{
                       display: 'flex',
                       gap: '1rem',
