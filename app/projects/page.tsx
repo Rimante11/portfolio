@@ -66,27 +66,90 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
 `;
 
 export default function MusicApp() {
-  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>(() => {
-    // Initialize all states to false immediately
-    const initialStates: { [key: string]: boolean } = {};
-    projectsData.forEach(project => {
-      initialStates[project.id] = false;
-    });
-    return initialStates;
-  });
+  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>({});
   const [modalImage, setModalImage] = useState<string | null>(null);
-  const [isClient, setIsClient] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Ensure we're on the client side to prevent hydration mismatches
+  // Only initialize after component mounts to prevent hydration issues
   useEffect(() => {
-    setIsClient(true);
-    // Reset all dropdown states to false when component mounts on client
+    setIsMounted(true);
     const initialStates: { [key: string]: boolean } = {};
     projectsData.forEach(project => {
       initialStates[project.id] = false;
     });
     setDropdownStates(initialStates);
   }, []);
+
+  // Don't render dropdowns until component is mounted
+  if (!isMounted) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#e8e8e8'
+      }}>
+        <A4Layout>
+          <Header />
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '2rem',
+            padding: '2rem',
+            paddingTop: '3rem'
+          }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem'
+            }}>
+              <h1 style={{
+                fontFamily: 'Syne, sans-serif',
+                fontSize: '3rem',
+                fontWeight: 'bold',
+                color: '#374151',
+                textAlign: 'left',
+                marginBottom: '1rem'
+              }}>
+                Projects
+              </h1>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0
+              }}>
+                {projectsData.map((project) => (
+                  <li key={project.id} style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderBottom: '1px solid #e5e7eb',
+                    fontFamily: 'Inconsolata, monospace'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      padding: '1rem 0',
+                      cursor: 'pointer'
+                    }}>
+                      <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#374151' }}>{project.name}</p>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <p style={{ margin: 0, fontSize: '0.9rem', color: '#6b7280' }}>{project.category}</p>
+                        <DropdownArrow $isOpen={false} />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <Footer />
+        </A4Layout>
+      </div>
+    );
+  }
 
   const toggleDropdown = (projectId: string) => {
     setDropdownStates(prev => {
@@ -198,10 +261,10 @@ export default function MusicApp() {
                     <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#374151' }}>{project.name}</p>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <p style={{ margin: 0, fontSize: '0.9rem', color: '#6b7280' }}>{project.category}</p>
-                      <DropdownArrow $isOpen={isClient && (dropdownStates[project.id] || false)} />
+                      <DropdownArrow $isOpen={dropdownStates[project.id] || false} />
                     </div>
                   </div>
-                  <DropdownContent $isOpen={isClient && (dropdownStates[project.id] || false)}>
+                  <DropdownContent $isOpen={dropdownStates[project.id] || false}>
                     <div style={{
                       display: 'flex',
                       gap: '1rem',
