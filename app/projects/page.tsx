@@ -4,7 +4,7 @@ import A4Layout from "../../src/components/A4Layout";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import projectsData from '../../src/data/projects.json';
 
@@ -121,6 +121,15 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
 export default function MusicApp() {
   const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>({});
   const [modalImage, setModalImage] = useState<string | null>(null);
+
+  // Initialize all dropdown states to false on component mount
+  useEffect(() => {
+    const initialStates: { [key: string]: boolean } = {};
+    projectsData.forEach(project => {
+      initialStates[project.id] = false;
+    });
+    setDropdownStates(initialStates);
+  }, []);
 
   const handlePlayClick = () => {
     // window.open('/melofy-app', '_blank');
@@ -444,25 +453,3 @@ export default function MusicApp() {
     </div >
   );
 }
-
-// TODO:
-// - Add Authentication/login for music app
-// - Connnect Spotify Dev
-// - Add testing for more complex features (user authentication, data management, etc.)
-
-// INTEGRATING TWO PROJECTS (two separare repositories)
-// - Deploy your music app as a separate project on Vercel (from its own Git repo).
-// - Get the live URL (e.g., https://music-app.vercel.app).
-// - In your portfolio site, simply link to it or embed it via an iframe.
-
-// - Add cv view available with one time acces key generated sent to user and set session timeout 10min.
-// (check gitLab pipelines)
-
-// - Learn both, but in this order:
-
-//     Basic AWS (EC2, S3, IAM, VPC, CloudFormation)
-
-//     CI/CD concepts (pipelines, build/test/deploy)
-
-//     CI/CD tools on AWS (CodePipeline, CodeBuild, or integrate Jenkins/GitHub Actions with AWS)
-
