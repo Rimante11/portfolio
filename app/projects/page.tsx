@@ -59,7 +59,7 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
   visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
 
   @media (max-width: 768px) {
-    max-height: ${props => props.$isOpen ? '400px' : '0'};
+    max-height: ${props => props.$isOpen ? '1000px' : '0'};
     padding: ${props => props.$isOpen ? '0.75rem' : '0'};
     margin-top: 4px;
   }
@@ -328,7 +328,10 @@ export default function MusicApp() {
                         color: '#6b7280',
                         lineHeight: '1.6',
                         fontFamily: 'Inconsolata, monospace',
-                        flex: 1
+                        flex: 1,
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        hyphens: 'auto'
                       }}>
                         <b>{project.name}</b><br></br>
                         {renderDescriptionWithLinks(project.description)}
@@ -448,6 +451,15 @@ export default function MusicApp() {
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+          p {
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
+            hyphens: auto !important;
+            max-width: 100% !important;
+          }
         }
       `}</style>
     </div >
