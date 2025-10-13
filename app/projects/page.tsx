@@ -8,59 +8,6 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import projectsData from '../../src/data/projects.json';
 
-const PlayButton = styled.div`
-  border-radius: 5%;
-  background: rgb(255, 255, 255);
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s;
-  box-shadow: 6px 6px 12px rgb(221, 219, 219), -6px -6px 12px #ffffff;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: not-allowed;
-
-  &:hover {
-    border: none;
-    transform: scale(1.05);
-  }
-
-  &:active {
-    box-shadow: inset 4px 4px 12px rgb(235, 19, 19),
-            inset -5px -5px 12px #fbfbfb;
-    transform: scale(0.95);
-  }
-
-  /* Triangle */
-  &::before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 20px solid red;
-    border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent;
-    margin-left: 4px;
-    filter: drop-shadow(inset 2px 2px 4px rgba(0, 0, 0, 0.3));
-    position: relative;
-  }
-
-  /* Inner shadow effect for triangle */
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 20px solid rgba(139, 0, 0, 0.4);
-    border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent;
-    margin-left: 4px;
-    z-index: 1;
-  }
-`;
-
 const DropdownArrow = styled.div<{ $isOpen: boolean }>`
   width: 12px;
   height: 12px;
@@ -130,10 +77,6 @@ export default function MusicApp() {
     });
     setDropdownStates(initialStates);
   }, []);
-
-  const handlePlayClick = () => {
-    // window.open('/melofy-app', '_blank');
-  };
 
   const toggleDropdown = (projectId: string) => {
     setDropdownStates(prev => {
@@ -305,19 +248,6 @@ export default function MusicApp() {
                             onClick={() => openModal(project.modalContent || '')}
                           />
                         )}
-                        {project.modalType === 'play-button' && (
-                          <div style={{
-                            width: '120px',
-                            height: '80px',
-                            backgroundColor: '#e5e7eb',
-                            borderRadius: '8px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}>
-                            <PlayButton onClick={handlePlayClick}></PlayButton>
-                          </div>
-                        )}
                       </div>
                       <p style={{
                         margin: 0,
@@ -416,8 +346,6 @@ export default function MusicApp() {
             <div
               style={{
                 position: 'relative',
-                maxWidth: '90vw',
-                maxHeight: '90vh',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -425,15 +353,14 @@ export default function MusicApp() {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              <img
                 src={modalImage}
                 alt="Full screen"
-                width={1200}
-                height={800}
                 style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  objectFit: 'contain',
+                  maxWidth: '90vw',
+                  maxHeight: '90vh',
+                  width: 'auto',
+                  height: 'auto',
                   borderRadius: '8px',
                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
                   userSelect: 'none',
