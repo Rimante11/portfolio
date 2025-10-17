@@ -12,7 +12,7 @@ const CVPage = () => {
             marginBottom: '1rem'
       }}>Resume</h1>
       <img
-        src="/ra_cv.png"
+        src="/ra.png"
         alt="Rimante Awdisson CV"
         style={{ maxWidth: "40%", height: "auto", border: "1px solid #ccc", borderRadius: "8px" }}
       />
