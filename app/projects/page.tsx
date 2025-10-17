@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import A4Layout from "../../src/components/A4Layout";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
@@ -7,43 +8,6 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import projectsData from '../../src/data/projects.json';
-
-const DropdownArrow = styled.div<{ $isOpen: boolean }>`
-  width: 12px;
-  height: 12px;
-  position: relative;
-  cursor: pointer;
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-  color: '#374151';
-  transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    background-color: #374151;
-    transition: all 0.3s ease;
-  }
-
-  &::before {
-    width: 2px;
-    height: 8px;
-    top: 2px;
-    left: 5px;
-    transform: rotate(45deg);
-    transform-origin: center bottom;
-  }
-
-  &::after {
-    width: 2px;
-    height: 8px;
-    top: 2px;
-    left: 5px;
-    transform: rotate(-45deg);
-    transform-origin: center bottom;
-  }
-`;
 
 const DropdownContent = styled.div<{ $isOpen: boolean }>`
   max-height: ${props => props.$isOpen ? '500px' : '0'};
@@ -66,90 +30,14 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
 `;
 
 export default function MusicApp() {
-  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>({});
-  const [modalImage, setModalImage] = useState<string | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Only initialize after component mounts to prevent hydration issues
-  useEffect(() => {
-    setIsMounted(true);
+  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>(() => {
     const initialStates: { [key: string]: boolean } = {};
     projectsData.forEach(project => {
       initialStates[project.id] = false;
     });
-    setDropdownStates(initialStates);
-  }, []);
-
-  // Don't render dropdowns until component is mounted
-  if (!isMounted) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#e8e8e8'
-      }}>
-        <A4Layout>
-          <Header />
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '2rem',
-            padding: '2rem',
-            paddingTop: '3rem'
-          }}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.5rem'
-            }}>
-              <h1 style={{
-                fontFamily: 'Syne, sans-serif',
-                fontSize: '3rem',
-                fontWeight: 'bold',
-                color: '#374151',
-                textAlign: 'left',
-                marginBottom: '1rem'
-              }}>
-                Projects
-              </h1>
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0
-              }}>
-                {projectsData.map((project) => (
-                  <li key={project.id} style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    borderBottom: '1px solid #e5e7eb',
-                    fontFamily: 'Inconsolata, monospace'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '1rem 0',
-                      cursor: 'pointer'
-                    }}>
-                      <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#374151' }}>{project.name}</p>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <p style={{ margin: 0, fontSize: '0.9rem', color: '#6b7280' }}>{project.category}</p>
-                        <DropdownArrow $isOpen={false} />
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <Footer />
-        </A4Layout>
-      </div>
-    );
-  }
+    return initialStates;
+  });
+  const [modalImage, setModalImage] = useState<string | null>(null);
 
   const toggleDropdown = (projectId: string) => {
     setDropdownStates(prev => {
@@ -261,7 +149,19 @@ export default function MusicApp() {
                     <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#374151' }}>{project.name}</p>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <p style={{ margin: 0, fontSize: '0.9rem', color: '#6b7280' }}>{project.category}</p>
-                      <DropdownArrow $isOpen={dropdownStates[project.id] || false} />
+                      <span style={{
+                        marginLeft: '8px',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        color: '#374151',
+                        fontWeight: 'bold',
+                        display: 'inline-block',
+                        transition: 'transform 0.3s ease',
+                        transform: (dropdownStates[project.id] || false) ? 'rotate(180deg)' : 'rotate(0deg)',
+                        userSelect: 'none'
+                      }}>
+                        ▼
+                      </span>
                     </div>
                   </div>
                   <DropdownContent $isOpen={dropdownStates[project.id] || false}>
@@ -448,11 +348,6 @@ export default function MusicApp() {
         </div>
       )}
       <style jsx>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
         @media (max-width: 768px) {
           p {
             word-break: break-word !important;
