@@ -9,14 +9,14 @@ const isSupabaseConfigured = supabaseUrl &&
   (supabaseUrl.startsWith('http://') || supabaseUrl.startsWith('https://'))
 
 // console.log('🔧 SUPABASE CONFIG CHECK:')
-// console.log('   URL:', supabaseUrl ? '✅ Present' : '❌ Missing')
-// console.log('   Key:', supabaseAnonKey ? '✅ Present' : '❌ Missing')
-// console.log('   Configured:', isSupabaseConfigured ? '✅ Yes' : '❌ No')
+// console.log('   URL:', supabaseUrl ? 'Present' : 'Missing')
+// console.log('   Key:', supabaseAnonKey ? 'Present' : 'Missing')
+// console.log('   Configured:', isSupabaseConfigured ? 'Yes' : 'No')
 
 if (!isSupabaseConfigured) {
-  console.error('� Supabase environment variables not configured! Application will not work without database.')
+  console.error('Supabase environment variables not configured! Application will not work without database.')
 } else {
-  console.log('🟢 Supabase client initialized successfully!')
+  console.log('Supabase client initialized successfully!')
 }
 
 // Create supabase client only if environment variables are available and valid
@@ -60,16 +60,16 @@ export interface Project {
 export async function getProjects(): Promise<Project[]> {
   // Use fallback JSON data if Supabase is not configured
   // if (!supabase) {
-  //   console.log('🟡 FALLBACK: Loading projects from JSON file (Supabase not configured)')
+  //   console.log('FALLBACK: Loading projects from JSON file (Supabase not configured)')
   //   return Promise.resolve(fallbackProjects)
   // }
 
   if (!supabase) {
-    console.error('🔴 SUPABASE: Client not configured!')
+    console.error('SUPABASE: Client not configured!')
     return []
   }
 
-  //console.log('🟢 SUPABASE: Attempting to fetch projects from Supabase database...')
+  //console.log('SUPABASE: Attempting to fetch projects from Supabase database...')
   
   const { data, error } = await supabase
     .from('projects')
@@ -77,14 +77,14 @@ export async function getProjects(): Promise<Project[]> {
     .order('created_at', { ascending: true })
 
   if (error) {
-    console.error('🔴 SUPABASE ERROR: Failed to fetch projects:', error)
-    // console.log('🟡 FALLBACK: Switching to JSON data due to error')
+    console.error('SUPABASE ERROR: Failed to fetch projects:', error)
+    // console.log('FALLBACK: Switching to JSON data due to error')
     // return fallbackProjects // Return fallback on error
     return []
   }
 
-  //console.log('✅ SUPABASE SUCCESS: Loaded', data?.length || 0, 'projects from database')
-  // console.log('📊 SUPABASE DATA:', data)
+  //console.log('SUPABASE SUCCESS: Loaded', data?.length || 0, 'projects from database')
+  // console.log('SUPABASE DATA:', data)
   return data || []
 }
 
