@@ -7,7 +7,7 @@ import Footer from "../../src/components/Footer";
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import projectsData from '../../src/data/projects.json';
+import { getProjects, Project } from '../../src/lib/supabase';
 
 const DropdownContent = styled.div<{ $isOpen: boolean }>`
   max-height: ${props => props.$isOpen ? '500px' : '0'};
@@ -30,14 +30,33 @@ const DropdownContent = styled.div<{ $isOpen: boolean }>`
 `;
 
 export default function MusicApp() {
-  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>(() => {
-    const initialStates: { [key: string]: boolean } = {};
-    projectsData.forEach(project => {
-      initialStates[project.id] = false;
-    });
-    return initialStates;
-  });
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [dropdownStates, setDropdownStates] = useState<{ [key: string]: boolean }>({});
   const [modalImage, setModalImage] = useState<string | null>(null);
+
+  // Fetch projects from Supabase
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const fetchedProjects = await getProjects();
+        setProjects(fetchedProjects);
+        
+        // Initialize dropdown states
+        const initialStates: { [key: string]: boolean } = {};
+        fetchedProjects.forEach(project => {
+          initialStates[project.id] = false;
+        });
+        setDropdownStates(initialStates);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProjects();
+  }, []);
 
   const toggleDropdown = (projectId: string) => {
     setDropdownStates(prev => {
@@ -51,7 +70,7 @@ export default function MusicApp() {
       }
 
       const newState: { [key: string]: boolean } = {};
-      projectsData.forEach(project => {
+      projects.forEach(project => {
         newState[project.id] = project.id === projectId;
       });
 
@@ -132,7 +151,11 @@ export default function MusicApp() {
               padding: 0,
               margin: 0
             }}>
-              {projectsData.map((project) => (
+              {loading ? (
+                <li style={{ padding: '2rem', textAlign: 'center', color: '#6b7280' }}>
+                  Loading projects...
+                </li>
+              ) : projects.map((project) => (
                 <li key={project.id} style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -181,7 +204,7 @@ export default function MusicApp() {
                         alignItems: 'center',
                         position: 'relative'
                       }}>
-                        {project.modalType === 'image' && project.image && (
+                        {project.modal_type === 'image' && project.image && (
                           <div style={{
                             width: '120px',
                             height: '80px',
@@ -194,7 +217,7 @@ export default function MusicApp() {
                             fontSize: '0.8rem',
                             fontFamily: 'Inconsolata, monospace',
                             cursor: 'pointer'
-                          }} onClick={() => openModal(project.modalContent || '')}>
+                          }} onClick={() => openModal(project.modal_content || '')}>
                             <Image
                               src={project.image}
                               alt={`${project.name} App`}
@@ -207,7 +230,7 @@ export default function MusicApp() {
                             />
                           </div>
                         )}
-                        {project.modalType === 'pdf' && project.image && (
+                        {project.modal_type === 'pdf' && project.image && (
                           <Image
                             src={project.image}
                             alt={`${project.name} App`}
@@ -218,7 +241,7 @@ export default function MusicApp() {
                               objectFit: 'cover',
                               cursor: 'pointer'
                             }}
-                            onClick={() => openModal(project.modalContent || '')}
+                            onClick={() => openModal(project.modal_content || '')}
                           />
                         )}
                       </div>
