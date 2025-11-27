@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import projectsData from '../data/projects.json'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -8,13 +9,8 @@ const isSupabaseConfigured = supabaseUrl &&
   supabaseAnonKey && 
   (supabaseUrl.startsWith('http://') || supabaseUrl.startsWith('https://'))
 
-// console.log('🔧 SUPABASE CONFIG CHECK:')
-// console.log('   URL:', supabaseUrl ? 'Present' : 'Missing')
-// console.log('   Key:', supabaseAnonKey ? 'Present' : 'Missing')
-// console.log('   Configured:', isSupabaseConfigured ? 'Yes' : 'No')
-
 if (!isSupabaseConfigured) {
-  console.error('Supabase environment variables not configured! Application will not work without database.')
+  console.warn('Supabase environment variables not configured! Using fallback JSON data.')
 } else {
   console.log('Supabase client initialized successfully!')
 }
@@ -25,23 +21,20 @@ export const supabase = isSupabaseConfigured
   : null
 
 // Fallback JSON data import
-// let fallbackProjects: Project[] = []
-// if (!isSupabaseConfigured) {
-//   try {
-//     // Import JSON data as fallback
-//     fallbackProjects = require('../data/projects.json').map((project: any) => ({
-//       id: project.id,
-//       name: project.name,
-//       category: project.category,
-//       description: project.description,
-//       image: project.image,
-//       modal_content: project.modalContent,
-//       modal_type: project.modalType,
-//     }))
-//   } catch (error) {
-//     console.error('Failed to load fallback JSON data:', error)
-//   }
-// }
+let fallbackProjects: Project[] = []
+try {
+  fallbackProjects = projectsData.map((project: any) => ({
+    id: project.id,
+    name: project.name,
+    category: project.category,
+    description: project.description,
+    image: project.image,
+    modal_content: project.modalContent,
+    modal_type: project.modalType,
+  }))
+} catch (error) {
+  console.error('Failed to load fallback JSON data:', error)
+}
 
 // Types for your projects
 export interface Project {
@@ -59,17 +52,10 @@ export interface Project {
 // Fetch all projects
 export async function getProjects(): Promise<Project[]> {
   // Use fallback JSON data if Supabase is not configured
-  // if (!supabase) {
-  //   console.log('FALLBACK: Loading projects from JSON file (Supabase not configured)')
-  //   return Promise.resolve(fallbackProjects)
-  // }
-
   if (!supabase) {
-    console.error('SUPABASE: Client not configured!')
-    return []
+    console.log('FALLBACK: Loading projects from JSON file (Supabase not configured)')
+    return Promise.resolve(fallbackProjects)
   }
-
-  //console.log('SUPABASE: Attempting to fetch projects from Supabase database...')
   
   const { data, error } = await supabase
     .from('projects')
@@ -78,13 +64,10 @@ export async function getProjects(): Promise<Project[]> {
 
   if (error) {
     console.error('SUPABASE ERROR: Failed to fetch projects:', error)
-    // console.log('FALLBACK: Switching to JSON data due to error')
-    // return fallbackProjects // Return fallback on error
-    return []
+    console.log('FALLBACK: Switching to JSON data due to error')
+    return fallbackProjects // Return fallback on error
   }
 
-  //console.log('SUPABASE SUCCESS: Loaded', data?.length || 0, 'projects from database')
-  // console.log('SUPABASE DATA:', data)
   return data || []
 }
 
