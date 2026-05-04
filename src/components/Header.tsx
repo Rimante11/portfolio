@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import { useRouter } from 'next/navigation';
 
+const MOBILE_BREAKPOINT = 1024;
+
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
     };
 
     checkIfMobile();
@@ -23,33 +25,83 @@ const Header = () => {
     router.push('/');
   }
 
+  const sideSlotWidth = 'clamp(220px, 24vw, 380px)';
+
+  if (isMobile) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        width: '100%',
+        minHeight: '100px',
+        padding: '12px 10px 0',
+        boxSizing: 'border-box',
+        gap: '8px'
+      }}>
+        <h1 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: '2rem',
+          fontWeight: '900',
+          color: '#374151',
+          margin: 0,
+          cursor: 'default',
+          transition: 'all 0.3s ease',
+          textAlign: 'center'
+        }}
+          onClick={handleBackToHomePage}
+        >
+          rimante
+        </h1>
+        <Navigation />
+      </div>
+    );
+  }
+
 
   return (
     <div style={{
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+      // justifyContent: 'space-between',
       width: '100%',
-      minHeight: isMobile ? '60px' : '80px',
-      padding: isMobile ? '0 10px' : '0 20px',
+      minHeight: isMobile ? '100px' : '120px',
+      padding: '24px 60px 6px',
       maxWidth: '100vw',
       boxSizing: 'border-box'
     }}>
-      <h1 style={{
-        fontFamily: 'Syne, sans-serif',
-        fontSize: isMobile ? '3rem' : '5rem',
-        fontWeight: '900',
-        color: '#374151',
-        margin: 0,
-        cursor: 'default',
-        transition: 'all 0.3s ease',
-        paddingLeft: isMobile ? '20px' : '10px'
-      }}
-        onClick={handleBackToHomePage}
-      >
-        r
-      </h1>
-      <Navigation />
+      <div style={{
+        width: sideSlotWidth,
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-end'
+      }}>
+        <h1 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: isMobile ? '2rem' : '3rem',
+          fontWeight: '900',
+          color: '#374151',
+          margin: 0,
+          cursor: 'default',
+          transition: 'all 0.3s ease'
+        }}
+          onClick={handleBackToHomePage}
+        >
+          rimante
+        </h1>
+      </div>
+
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-end'
+      }}>
+        <Navigation />
+      </div>
+
+      <div style={{ width: sideSlotWidth }} />
     </div>
   );
 };

@@ -1,0 +1,252 @@
+.meetModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  backdrop-filter: blur(4px);
+  z-index: 1200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.meetModal {
+  width: min(1020px, 95vw);
+  background: #374151;
+  border: 1px solid #222638;
+  border-radius: 28px;
+  color: #d1d5db;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.meetModalClose {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  color: #c8ccdb;
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.meetModalTop {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr 1.3fr;
+  border-bottom: 1px solid #24283b;
+}
+
+.meetInfoCol,
+.meetCalendarCol,
+.meetSlotsCol {
+  padding: 28px;
+}
+
+.meetInfoCol,
+.meetCalendarCol {
+  border-right: 1px solid #24283b;
+}
+
+.meetName {
+  margin: 0 0 22px;
+  color: #eceef6;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.meetMetaList {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 14px;
+  color: #9ca3af;
+  font-size: 0.92rem;
+}
+
+.meetMonthHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.meetMonthTitle {
+  margin: 0;
+  color: #eceef6;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.meetMonthArrows {
+  display: flex;
+  gap: 14px;
+  color: #adb3c5;
+  font-size: 1.6rem;
+}
+
+.meetWeekHead {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+  color: #626b82;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.meetCalendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  color: #d1d5e6;
+}
+
+.meetCalendarGrid > span,
+.meetDay,
+.meetDayActive,
+.meetDayMuted {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.95rem;
+}
+
+.meetDay {
+  background: transparent;
+  color: #d1d5e6;
+}
+
+.meetDayActive {
+  background: #db9f3d;;
+  color: #ffffff;
+}
+
+.meetDayMuted {
+  background: #272b37;
+  color: #9aa0b2;
+}
+
+.meetDayWeekend {
+  background: transparent;
+  color: #9aa5ba;
+  border: none;
+}
+
+.meetSlotsTitle {
+  margin: 0;
+  color: #f3f4f8;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.meetTimezone {
+  margin: 10px 0 14px;
+  color: #8f97ad;
+  font-size: 0.82rem;
+}
+
+.meetSlotsList {
+  display: grid;
+  gap: 10px;
+  max-height: 294px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.meetSlotsList button {
+  border: 1px solid #2a2f42;
+  background: transparent;
+  color: #d5d8e7;
+  border-radius: 14px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.activeSlot {
+  background: #db9f3d !important;
+  border-color: #db9f3d !important;
+  color: #ffffff !important;
+}
+
+.bookedSlot {
+  background: #1a1d2e !important;
+  border-color: #1a1d2e !important;
+  color: #5a5f73 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
+.meetModalBottom {
+  padding: 26px 28px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 14px;
+}
+
+.meetFieldWrap {
+  display: grid;
+  gap: 8px;
+}
+
+.meetFieldWrap label {
+  color: #8f97ad;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
+.meetFieldWrap input {
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #2a2f42;
+  background: #151827;
+  color: #eef0f8;
+  padding: 0 14px;
+}
+
+.meetConfirmBtn {
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  padding: 0 24px;
+  background: rgb(120, 173, 209);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .meetModal {
+    width: min(680px, 95vw);
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .meetModalTop {
+    grid-template-columns: 1fr;
+  }
+
+  .meetInfoCol,
+  .meetCalendarCol {
+    border-right: none;
+    border-bottom: 1px solid #24283b;
+  }
+
+  .meetModalBottom {
+    grid-template-columns: 1fr;
+  }
+}

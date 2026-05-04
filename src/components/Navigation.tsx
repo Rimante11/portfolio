@@ -2,14 +2,27 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import styles from './Navigation.module.css';
+
+const MOBILE_BREAKPOINT = 1024;
+const SECTION_IDS = ['home', 'about', 'projects', 'contact'] as const;
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [hash, setHash] = useState('');
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: '/#home', label: 'HOME' },
+    { href: '/#about', label: 'ABOUT' },
+    { href: '/#projects', label: 'PROJECTS' },
+    { href: '/#contact', label: 'CONTACT' }
+  ];
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
     };
 
     checkIfMobile();
@@ -18,157 +31,163 @@ const Navigation = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    const updateHash = () => {
+      setHash(window.location.hash || '#home');
+    };
+
+    updateHash();
+    window.addEventListener('hashchange', updateHash);
+
+    return () => window.removeEventListener('hashchange', updateHash);
+  }, []);
+
+  useEffect(() => {
+    if (pathname !== '/') {
+      return;
+    }
+
+    let isTicking = false;
+
+    const getHeaderOffset = () => {
+      const header = document.querySelector('.app-header-wrap') as HTMLElement | null;
+      return header?.offsetHeight ?? (isMobile ? 110 : 140);
+    };
+
+    const getActiveSectionId = () => {
+      const anchorOffset = getHeaderOffset() + 24;
+      let activeSectionId = 'home';
+
+      for (const sectionId of SECTION_IDS) {
+        const section = document.getElementById(sectionId);
+
+        if (!section) {
+          continue;
+        }
+
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop - anchorOffset <= 0) {
+          activeSectionId = sectionId;
+        }
+      }
+
+      return activeSectionId;
+    };
+
+    const syncActiveSection = () => {
+      isTicking = false;
+
+      const activeSectionId = getActiveSectionId();
+      const nextHash = `#${activeSectionId}`;
+
+      setHash((previousHash) => (previousHash === nextHash ? previousHash : nextHash));
+
+      if (window.location.hash !== nextHash) {
+        window.history.replaceState(null, '', `/${nextHash}`);
+      }
+    };
+
+    const requestSync = () => {
+      if (isTicking) {
+        return;
+      }
+
+      isTicking = true;
+      window.requestAnimationFrame(syncActiveSection);
+    };
+
+    requestSync();
+    window.addEventListener('scroll', requestSync, { passive: true });
+    window.addEventListener('resize', requestSync);
+
+    return () => {
+      window.removeEventListener('scroll', requestSync);
+      window.removeEventListener('resize', requestSync);
+    };
+  }, [pathname, isMobile]);
+
+  const isActivePath = (href: string) => {
+    if (pathname !== '/') {
+      return false;
+    }
+
+    return hash === href.replace('/', '');
   };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+  const getTabClassName = (href: string) => {
+    const isActive = isActivePath(href);
+    const activeClass = isMobile ? styles.tabActiveMobile : styles.tabActiveDesktop;
+
+    return [
+      styles.tab,
+      isMobile ? styles.tabMobile : styles.tabDesktop,
+      isActive ? activeClass : styles.tabInactive
+    ].join(' ');
   };
 
-  const linkStyle = {
-    fontFamily: 'Inconsolata, monospace',
-    fontSize: '1.125rem',
-    color: '#374151',
-    textDecoration: 'none',
-    padding: '8px 12px',
-    borderRadius: '6px',
-    transition: 'color 0.3s ease, transform 0.3s ease, background-color 0.3s ease'
-  };
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname !== '/') {
+      return;
+    }
 
-  const mobileLinkStyle = {
-    ...linkStyle,
-    padding: '12px 16px',
-    transition: 'background-color 0.3s ease'
-  };
+    e.preventDefault();
+    const targetId = href.replace('/#', '');
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.backgroundColor = '#dbeafe';
-  };
+    if (targetId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.replaceState(null, '', '/#home');
+      setHash('#home');
+      return;
+    }
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.backgroundColor = 'transparent';
+    const targetSection = document.getElementById(targetId);
+
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.replaceState(null, '', href);
+      setHash(`#${targetId}`);
+    }
   };
 
   if (isMobile) {
     return (
-      <>
-        <button
-          onClick={toggleMenu}
-          style={{
-            background: 'none',
-            border: 'none',
-            fontSize: '1.5rem',
-            cursor: 'pointer',
-            padding: '8px',
-            color: '#374151',
-            marginRight: '10px'
-          }}
-        >
-          {isMenuOpen ? '✕' : '☰'}
-        </button>
-        {isMenuOpen && (
-          <div style={{
-            position: 'fixed',
-            top: '80px',
-            left: 0,
-            right: 0,
-            // bottom: 0,
-            background: '#ffffff',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            zIndex: 1000,
-            padding: '1rem',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            gap: '1rem',
-            maxHeight: 'calc(100vh - 80px)',
-            overflow: 'auto'
-          }}>
-            <Link
-              href="/"
-              onClick={closeMenu}
-              style={mobileLinkStyle}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              onClick={closeMenu}
-              style={mobileLinkStyle}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              About
-            </Link>
-            <Link
-              href="/projects"
-              onClick={closeMenu}
-              style={mobileLinkStyle}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              Projects
-            </Link>
-            <Link
-              href="/contact"
-              onClick={closeMenu}
-              style={mobileLinkStyle}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-      </>
+      <nav className={styles.navMobile}>
+        <div className={styles.mobileTopStrip} />
+        <div className={styles.tabsRowMobile}>
+          {navItems.map((item) => {
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={getTabClassName(item.href)}
+                onClick={(e) => handleSectionClick(e, item.href)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     );
   }
 
   return (
-    <nav style={{
-      display: 'flex',
-      flexDirection: 'row',
-      gap: '32px',
-      alignItems: 'center'
-    }}>
-      <Link
-        href="/"
-        style={linkStyle}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        Home
-      </Link>
-      <Link
-        href="/about"
-        style={linkStyle}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        About
-      </Link>
-      <Link
-        href="/projects"
-        style={linkStyle}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        Projects
-      </Link>
-      <Link
-        href="/contact"
-        style={{
-          ...linkStyle,
-          marginRight: '0px'
-        }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        Contact
-      </Link>
+    <nav className={styles.navDesktop}>
+      <div className={styles.tabsRowDesktop}>
+        {navItems.map((item) => {
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={getTabClassName(item.href)}
+              onClick={(e) => handleSectionClick(e, item.href)}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 };

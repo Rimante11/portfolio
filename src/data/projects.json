@@ -1,4 +1,31 @@
 [
+    {
+    "id": "fastapi",
+    "name": "Fast API",
+    "category": "Web Development",
+    "description": "This app is a full-stack FastAPI + React admin dashboard template for managing users and items, with secure authentication, role-based access (admin/user), and production-ready setup for local development and deployment. Backend: FastAPI (Python), SQLModel, Alembic, PostgreSQL, JWT auth. Frontend: React + TypeScript, Vite, TanStack Router/Query, Tailwind + shadcn/ui.Dev/Deploy: Docker Compose (with Traefik), plus testing with Pytest and Playwright.",
+    "image": "/fastAPI.png",
+    "modalContent": "/fastAPI.png",
+    "modalType": "image"
+  },
+  {
+    "id": "support-iq",
+    "name": "Game Store",
+    "category": "Web Development",
+    "description": "A simple game store application built using ASP.NET Core Minimal API (.NET 9) for the backend and React 19 with TypeScript for the frontend. The backend exposes RESTful endpoints implemented in C#, using Entity Framework Core 9 as the ORM for data access and SQLite as the database. The frontend is developed with React 19, typed with TypeScript, and bundled using Vite 7 for fast development and optimized builds.",
+    "image": "/Game_store.png",
+    "modalContent": "/Game_store.png",
+    "modalType": "image"
+  },
+    {
+    "id": "support-insights-hub",
+    "name": "SupportIQ",
+    "category": "Web Development",
+    "description": "Support Insights Hub - A customer support dashboard for managing tickets, agents, and users with role-based access control. Frontend: React, Vite (build tool), Tailwind CSS + shadcn/ui components, TanStack Query (data fetching), React Router, JWT (authentication). Backend: ASP.NET, Entity Framework Core (In-memory DB), JWT Bearer authentication, BCrypt password hashing. DevOps: Docker + docker - compose, npm package manager,Multi-stage builds (Node/nginx for frontend, .NET SDK/runtime for backend). Check it out: https://github.com/Rimante11/support-insights-hub",
+    "image": "/supportIQ.png",
+    "modalContent": "/supportIQ.png",
+    "modalType": "image"
+  },
   {
     "id": "e-shop",
     "name": "Artlister E-shop",
@@ -19,7 +46,7 @@
   },
   {
     "id": "dashboard",
-    "name": "Dashboard For Phone Calls",
+    "name": "Dashboard - Phone Calls",
     "category": "Web Development",
     "description": "Created a simple dashboard that visualizes data from a JSON object. The goal was to display the total calls per employee per day using several graphs and tables. A modern full-stack web application built with .NET 9.0 and ASP.NET Core MVC, following the MVC and Service Layer patterns with dependency injection. The frontend uses Razor Views, Bootstrap, jQuery, and Chart.js for responsive UI and data visualization. Features include runtime Razor compilation, JSON-based configuration, and hot reload for streamlined development. Take a look at the code: https://github.com/Rimante11/dashboard_for_phone_calls",
     "image": "/dashboard.png",
@@ -60,6 +87,15 @@
     "description": "A personal card for developers. A modern digital business card application designed specifically for developers and tech professionals. Features clean, minimalist design with easy sharing capabilities, contact information display, and professional portfolio showcase. Perfect for networking and making lasting impressions in the tech community.",
     "image": "/personal_card.png",
     "modalContent": "/personal_card.png",
+    "modalType": "image"
+  },
+  {
+    "id": "calculator",
+    "name": "Calculator design",
+    "category": "UX/UI Design",
+    "description": "A modern calculator design focusing on user experience and visual appeal. The design features intuitive layout, responsive interface, and smooth interactions, making it easy and enjoyable to use.",
+    "image": "/calculator.png",
+    "modalContent": "/calculator.png",
     "modalType": "image"
   }
 ]
